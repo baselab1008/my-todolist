@@ -96,51 +96,15 @@ my-todolist-u/
 
 ## 실행 방법
 
-### 환경 변수 설정
+### 최초 셋업 (DB 초기화 + 의존성 설치 + 환경변수 생성 자동화)
 
 ```bash
-# backend/.env 파일 생성
-cp backend/.env.example backend/.env
-
-# frontend/.env 파일 생성
-cp frontend/.env.example frontend/.env
+chmod +x tododb-setup.sh
+./tododb-setup.sh
+# 프롬프트에 PostgreSQL 비밀번호 입력 (기본값: post)
 ```
 
-#### `backend/.env` 필수 값 설정
-
-```env
-NODE_ENV=development
-PORT=3000
-
-# PostgreSQL 연결 URL — 로컬 DB 설정에 맞게 수정
-DB_URL=postgresql://postgres:비밀번호@localhost:5432/my_todolist
-
-# JWT 서명에 사용할 임의의 긴 문자열 (최소 32자 이상 권장)
-JWT_SECRET=여기에_랜덤_문자열_입력
-JWT_REFRESH_SECRET=여기에_다른_랜덤_문자열_입력
-```
-
-> JWT 시크릿 생성 예시:
-> ```bash
-> node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"
-> ```
-
-#### `frontend/.env` 필수 값 설정
-
-```env
-# 로컬 개발 시 백엔드 주소 (기본값 그대로 사용 가능)
-VITE_API_BASE_URL=http://localhost:3000/api
-```
-
-> 프로덕션 배포 시에는 `frontend/.env.production`의 값이 자동으로 적용됩니다.
-
-### 의존성 설치
-
-```bash
-npm install
-cd frontend && npm install
-cd ../backend && npm install
-```
+> DB 생성, npm 의존성 설치, `.env` 파일 생성까지 자동으로 처리됩니다.
 
 ### 개발 서버 실행 (프론트 + 백엔드 동시)
 
