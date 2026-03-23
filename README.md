@@ -51,7 +51,6 @@ my-todolist-u/
 | 파일 | 설명 |
 |---|---|
 | `1-domain-definition.md` | 도메인 정의서 — 핵심 엔티티(User, Todo), 비즈니스 규칙, API 설계 원칙 |
-| `1-domain-definition_old.md` | 도메인 정의서 이전 버전 |
 | `2-prd.md` | PRD(제품 요구사항 문서) — 기능 요구사항, 비기능 요구사항, 인수 기준 |
 | `3-user-scenario.md` | 사용자 시나리오 — SC/ERR 케이스별 E2E 흐름 정의 (E2E 테스트 기반 문서) |
 | `4-project-principle.md` | 프로젝트 원칙 — 코드 스타일, 아키텍처 규칙, AI 협업 가이드 |
