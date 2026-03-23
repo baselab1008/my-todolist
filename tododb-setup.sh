@@ -7,9 +7,28 @@ echo " My TodoList - 자동 셋업 스크립트"
 echo "========================================="
 
 
-# PostgreSQL 비밀번호 입력
-read -sp "PostgreSQL postgres 계정 비밀번호를 입력하세요: " DB_PASSWORD
+# 0. PostgreSQL 설치 확인 및 자동 설치
 echo ""
+echo "[0/6] PostgreSQL 설치 확인 중..."
+if ! command -v psql > /dev/null 2>&1; then
+  echo "  -> PostgreSQL이 없습니다. 설치를 시작합니다..."
+  sudo apt update -qq
+  sudo apt install -y postgresql postgresql-contrib
+  echo "  -> PostgreSQL 설치 완료"
+else
+  echo "  -> PostgreSQL 이미 설치됨 (스킵)"
+fi
+
+# PostgreSQL 서비스 시작
+if ! pg_isready -q 2>/dev/null; then
+  sudo systemctl start postgresql
+fi
+
+# postgres 계정 비밀번호를 'post'로 설정
+sudo -u postgres psql -c "ALTER USER postgres PASSWORD 'post';" > /dev/null 2>&1
+
+
+DB_PASSWORD="post"
 
 
 # 1. PostgreSQL 연결 확인
