@@ -144,48 +144,17 @@ npm -v           # 9.x.x 이상
 psql --version   # psql 17.x 이상
 ```
 
-### 10.6 DB 초기화 및 테스트 데이터 생성
+### 10.6 셋업 스크립트 실행 (DB 초기화 + 의존성 설치 + 환경변수 생성 자동화)
+
+아래 명령어 하나로 DB 초기화, npm 의존성 설치, `.env` 파일 생성까지 모두 자동으로 처리됩니다.
 
 ```bash
-bash tododb-setup.sh
-# DB 비밀번호: post
+chmod +x tododb-setup.sh
+./tododb-setup.sh
+# DB 비밀번호 입력 프롬프트에 post 입력
 ```
 
----
-
-## 11. 의존성 설치 (최초 1회)
-
-클론 후 아래 명령어로 루트, 백엔드, 프론트엔드 패키지를 모두 설치합니다.
-
-```bash
-npm install
-cd backend && npm install && cd ..
-cd frontend && npm install && cd ..
-```
-
----
-
-## 12. 개발 환경변수 설정
-
-GitHub에 올라가지 않는 환경변수 파일을 직접 생성해야 합니다.
-
-### 백엔드 `.env`
-
-```bash
-cp backend/.env.example backend/.env
-```
-
-이후 `backend/.env` 파일을 열어 아래 내용을 채웁니다:
-
-| 변수명 | 설명 | 기본값 |
-|--------|------|--------|
-| `NODE_ENV` | 실행 환경 | `development` |
-| `PORT` | 백엔드 서버 포트 | `3000` |
-| `DB_URL` | PostgreSQL 연결 URL | `postgresql://postgres:post@localhost:5432/my_todolist` |
-| `JWT_SECRET` | Access Token 서명 키 | 임의의 긴 문자열로 변경 |
-| `JWT_REFRESH_SECRET` | Refresh Token 서명 키 | 임의의 긴 문자열로 변경 |
-
-> `.env`는 보안상 `.gitignore`에 포함되어 있으므로 GitHub에 올라가지 않습니다.
+> 의존성 설치(11단계)와 환경변수 설정(12단계)은 스크립트가 자동으로 처리하므로 별도 실행 불필요합니다.
 
 ---
 
@@ -207,7 +176,7 @@ cp frontend/.env.example frontend/.env.production
 
 ---
 
-## 14. 설치 완료 후 애플리케이션 실행 방법
+## 11. 설치 완료 후 애플리케이션 실행 방법
 
 ```bash
 npm run dev

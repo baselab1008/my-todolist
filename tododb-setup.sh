@@ -25,7 +25,7 @@ echo "  -> PostgreSQL 연결 성공"
 # 2. DB 생성 (이미 있으면 스킵)
 echo ""
 echo "[2/6] 데이터베이스 생성 중..."
-if PGPASSWORD="$DB_PASSWORD" psql -U postgres -h localhost -lqt | cut -d \| -f 1 | grep -qw my_todolist; then
+if PGPASSWORD="$DB_PASSWORD" psql -U postgres -h localhost -tc "SELECT 1 FROM pg_database WHERE datname='my_todolist';" | grep -q 1; then
   echo "  -> my_todolist DB가 이미 존재합니다 (스킵)"
 else
   PGPASSWORD="$DB_PASSWORD" psql -U postgres -h localhost -c "CREATE DATABASE my_todolist;"
@@ -46,7 +46,12 @@ echo ""
 echo "[4/6] npm 의존성 설치 중..."
 npm install
 cd backend && npm install && cd ..
-cd frontend && npm install && cd ..
+cd frontend && npm install --ignore-scripts && cd ..
+
+# esbuild 바이너리 실행 권한 보정 (일부 환경에서 누락되는 경우 대비)
+find frontend/node_modules -path "*/esbuild/bin/esbuild" -type f -exec chmod +x {} \;
+find frontend/node_modules -path "*/@esbuild/*/bin/esbuild" -type f -exec chmod +x {} \;
+
 echo "  -> 의존성 설치 완료"
 
 
