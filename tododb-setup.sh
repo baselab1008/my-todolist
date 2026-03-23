@@ -7,7 +7,23 @@ echo " My TodoList - 자동 셋업 스크립트"
 echo "========================================="
 
 
-# 0. PostgreSQL 설치 확인 및 자동 설치
+# 0. Node.js 20 설치 확인 및 자동 설치
+NODE_REQUIRED=20
+echo ""
+echo "[0/6] Node.js ${NODE_REQUIRED} 설치 확인 중..."
+CURRENT_NODE_MAJOR=$(node --version 2>/dev/null | sed 's/v\([0-9]*\).*/\1/')
+if [ "$CURRENT_NODE_MAJOR" != "$NODE_REQUIRED" ]; then
+  echo "  -> Node.js ${NODE_REQUIRED}이 없습니다. 설치를 시작합니다..."
+  sudo apt update -qq
+  sudo apt install -y ca-certificates curl gnupg
+  curl -fsSL https://deb.nodesource.com/setup_${NODE_REQUIRED}.x | sudo -E bash -
+  sudo apt install -y nodejs
+  echo "  -> Node.js ${NODE_REQUIRED} 설치 완료 ($(node --version))"
+else
+  echo "  -> Node.js ${NODE_REQUIRED} 이미 설치됨 ($(node --version), 스킵)"
+fi
+
+# PostgreSQL 설치 확인 및 자동 설치
 echo ""
 echo "[0/6] PostgreSQL 설치 확인 중..."
 if ! command -v psql > /dev/null 2>&1; then

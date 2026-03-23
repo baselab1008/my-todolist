@@ -13,16 +13,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sujinchoi3/my-todolist.git"
+    "url": "git+https://github.com/baselab1008/my-todolist.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "engines": {
+    "node": ">=20.0.0 <21.0.0",
+    "npm": ">=10.0.0"
+  },
   "type": "commonjs",
   "bugs": {
-    "url": "https://github.com/sujinchoi3/my-todolist/issues"
+    "url": "https://github.com/baselab1008/my-todolist/issues"
   },
-  "homepage": "https://github.com/sujinchoi3/my-todolist#readme",
+  "homepage": "https://github.com/baselab1008/my-todolist#readme",
   "devDependencies": {
     "@playwright/test": "^1.58.2",
     "concurrently": "^9.2.1"
