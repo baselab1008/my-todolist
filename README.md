@@ -132,6 +132,28 @@ npm run dev:mock
 
 ---
 
+## 트러블슈팅
+
+### 외부에서 접속 시 ERR_CONNECTION_TIMED_OUT
+
+서버에 직접 접속해서 포트를 열어야 합니다.
+
+```bash
+# 방화벽 상태 확인
+sudo ufw status
+
+# 포트 허용
+sudo ufw allow 5173
+sudo ufw allow 3000
+
+# 방화벽 활성화 (비활성 상태인 경우)
+sudo ufw enable
+```
+
+> AWS / GCP / Azure 등 클라우드 서버라면 콘솔에서 **인바운드 보안 그룹 규칙**에 5173, 3000 포트를 추가해야 합니다.
+
+---
+
 ## 테스트 실행
 
 ```bash
