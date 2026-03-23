@@ -41,7 +41,8 @@ my-todolist-u/
 ├── mockup/            # 백엔드 없이 개발용 목서버
 ├── .github/workflows/ # GitHub Actions CI/CD
 ├── .claude/           # Claude AI 에이전트 설정
-└── setup.md           # 로컬 개발 환경 설정 가이드
+├── setup-windows.md   # Windows에서 Ubuntu 설치 가이드
+└── setup-ubuntu.md    # Ubuntu 개발 환경 설정 가이드
 ```
 
 ---
@@ -75,21 +76,14 @@ my-todolist-u/
 
 ## 로컬 환경 설정
 
-처음 시작하는 경우 **[setup.md](./setup.md)** 를 따라 환경을 구성하세요.
+처음 시작하는 경우 아래 기준에 따라 가이드를 따라 환경을 구성하세요.
 
-아래 항목들을 단계별로 안내합니다:
+**Ubuntu 24.04 이상이 이미 설치된 경우**
+- **[setup-ubuntu.md](./setup-ubuntu.md)** 만 따라 진행하세요.
 
-1. VS Code 설치
-2. NVM + Node.js 설치
-3. Python 설치
-4. GitHub 계정 생성
-5. Git 설치 및 설정
-6. GitHub CLI 설치
-7. AI Coding Agent 설치 (Claude, Qwen, Gemini)
-8. Docker + WSL + Ubuntu 설치
-9. 프로젝트 클론 (`C:\vibe`)
-10. Claude Ubuntu 샌드박스 환경 설정
-11. PostgreSQL 설치 및 DB 초기화
+**Ubuntu가 없거나 24.04 미만인 경우**
+1. **[setup-windows.md](./setup-windows.md)** — WSL을 통해 Ubuntu 24.04 설치
+2. **[setup-ubuntu.md](./setup-ubuntu.md)** — 이후 개발 환경 구성
 
 ---
 
